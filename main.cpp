@@ -2,15 +2,12 @@
 
 int main()
 {
-	Circle c(5);
+	Wheels w(19); // inches
+	Engine e(540); 
+	Doors d(2);
+	Seats s(4);
+	Boot b(240);
+	Car c(w.getDiameter(), e.getPower(), d.getQuantity_1(), s.getQuantity_2(), b.getVolume());
 	c.printFunc();
-	Square s(5);
-	s.printFunc();
-	c.setRadius(10);
-	c.printFunc();
-	s.setSide(20);
-	s.printFunc();
-	InscridedCircle ic(10);
-	ic.printFunc();
 	return 0;
 }

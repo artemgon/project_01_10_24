@@ -1,59 +1,103 @@
 #include "libs.h"
 
-class Circle
+class Wheels
 {
 protected:
-	double radius;
+	int diameter;
 public:
-	Circle(double r = 0) : radius(r) {}
-	double getRadius() const { return radius; }
-	void setRadius(double r) { radius = r; }
-	double getArea() const { return 3.14159 * radius * radius; }
-	double getDiameter() const { return 2 * radius; }
-	double getCircumference() const { return 2 * 3.14159 * radius; }
-	virtual void printFunc() const
+	Wheels(int d) : diameter(d) {}
+	int getDiameter()
 	{
-		cout << "Circle: " << endl;
-		cout << "Radius: " << radius << endl;
-		cout << "Diameter: " << getDiameter() << endl;
-		cout << "Circumference: " << getCircumference() << endl;
-		cout << "Area: " << getArea() << endl;
-		cout << endl;
+		return diameter;
 	}
-	~Circle() = default;
+	virtual void printFunc()
+	{
+		cout << "Diameter: " << diameter << endl;
+	}
+	~Wheels() = default;
 };
 
-class Square
+class Engine
 {
 protected:
-	double side;
+	int power;
 public:
-	Square(double s = 0) : side(s) {}
-	double getSide() const { return side; }
-	void setSide(double s) { side = s; }
-	double getArea() const { return side * side; }
-	double getPerimeter() const { return 4 * side; }
-	virtual void printFunc() const
+	Engine(int p) : power(p) {}
+	int getPower()
 	{
-		cout << "Square: " << endl;
-		cout << "Side: " << side << endl;
-		cout << "Area: " << getArea() << endl;
-		cout << "Perimeter: " << getPerimeter() << endl;
-		cout << endl;
+		return power;
 	}
-	~Square() = default;
+	virtual void printFunc()
+	{
+		cout << "Power: " << power << endl;
+	}
+	~Engine() = default;
 };
 
-class InscridedCircle : public Circle, public Square
+class Doors
+{
+protected:
+	int quantity_1;
+public:
+	Doors(int q) : quantity_1(q) {}
+	int getQuantity_1()
+	{
+		return quantity_1;
+	}
+	virtual void printFunc()
+	{
+		cout << "quantity_1: " << quantity_1 << endl;
+	}
+	~Doors() = default;
+};
+
+class Seats
+{
+protected:
+	int quantity_2;
+public:
+	Seats(int q) : quantity_2(q) {}
+	int getQuantity_2()
+	{
+		return quantity_2;
+	}
+	virtual void printFunc()
+	{
+		cout << "quantity_2: " << quantity_2 << endl;
+	}
+	~Seats() = default;
+};
+
+class Boot
+{
+protected:
+	int volume;
+public:
+	Boot(int v) : volume(v) {}
+	int getVolume()
+	{
+		return volume;
+	}
+	virtual void printFunc()
+	{
+		cout << "Volume: " << volume << endl;
+	}
+	~Boot() = default;
+};
+
+class Car : public Wheels, public Engine, public Doors, public Seats, public Boot
 {
 public:
-	InscridedCircle(double r) : Circle(r), Square(2 * r) {}
-	void printFunc() const override
+	Car(int d, int p, int q1, int q2, int v) : Wheels(d), Engine(p), Doors(q1), Seats(q2), Boot(v) {}
+	void printFunc()
 	{
-		cout << "Inscrided Circle: " << endl;
+		cout << "Car:" << endl;
 		cout << endl;
-		Circle::printFunc();
-		Square::printFunc();
+		Wheels::printFunc();
+		Engine::printFunc();
+		Doors::printFunc();
+		Seats::printFunc();
+		Boot::printFunc();
 	}
-	~InscridedCircle() = default;
+	~Car() = default;
 };
